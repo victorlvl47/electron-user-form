@@ -11,17 +11,17 @@ formulario.addEventListener('submit', function(event) {
     
     event.preventDefault();
 
-    var errorMsg = " ";
-    if (!pass.value.match(expPass)) {
-        errorMsg = "la contrasena debe tener 8 caracteres, 1 mayuscula, etc."
-    }
+    // var errorMsg = " ";
+    // if (!pass.value.match(expPass)) {
+    //     errorMsg = "la contrasena debe tener 8 caracteres, 1 mayuscula, etc."
+    // }
 
-    if (errorMsg = " ") {
-        window.comunicacion.registroValido([nombre.value, pass.value]);
-    }
-    else {
-        alert(errorMsg);
-    }
+    // if (errorMsg = " ") {
+    //     window.comunicacion.registroValido([nombre.value, pass.value]);
+    // }
+    // else {
+    //     alert(errorMsg);
+    // }
     
 });
 
