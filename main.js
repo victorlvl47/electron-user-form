@@ -1,5 +1,6 @@
 const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
+const validator = require('validator');
 
 let ventana;
 
@@ -39,6 +40,15 @@ ipcMain.on('registroValido', function(event, args) {
         ventana2.webContents.send('inicioCorrecto', 'Bienvenido');
     });
     // ventana.webContents.send('inicioCorrecto', 'Bienvenido');
+});
+
+ipcMain.on("validateEmail", function(event, args) {
+    
+    if (validator.isEmail('foo@bar.com')) {
+        console.log("good email");
+    } else {
+        console.log("bad email");
+    }
 });
 
 app.whenReady().then(createWindow);

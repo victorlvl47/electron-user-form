@@ -11,6 +11,8 @@ formulario.addEventListener('submit', function(event) {
     
     event.preventDefault();
 
+    window.comunicacion.validateEmail(["this is a temp email"]);
+
     // var errorMsg = " ";
     // if (!pass.value.match(expPass)) {
     //     errorMsg = "la contrasena debe tener 8 caracteres, 1 mayuscula, etc."
