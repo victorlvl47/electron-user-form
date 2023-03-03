@@ -1,17 +1,24 @@
 var formulario = document.getElementById('form-login');
 var pass = document.getElementById('pass-login');
 var nombre = document.getElementById('nombre-login');
+var emailInput = document.getElementById('email-login');
 
 var expMay = RegExp("[A-Z]");
 var expMin = RegExp("[a-z]");
 var expNum = RegExp("[0-9]");
 var expPass = RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}")
 
+window.comunicacion.checkEmail(function(event, args) {
+    alert("checkEmail function: " + args);
+});
+
 formulario.addEventListener('submit', function(event) {
     
     event.preventDefault();
+    
+    console.log("emailInput:", emailInput.value);
 
-    window.comunicacion.validateEmail(["this is a temp email"]);
+    window.comunicacion.validateEmail(emailInput.value);
 
     // var errorMsg = " ";
     // if (!pass.value.match(expPass)) {

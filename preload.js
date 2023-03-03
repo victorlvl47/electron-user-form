@@ -5,6 +5,7 @@ contextBridge.exposeInMainWorld(
     {
         registroValido: (datos) => ipcRenderer.send('registroValido', datos), 
         inicioCorrecto: (callback) => ipcRenderer.on('inicioCorrecto', callback), 
-        validateEmail: (datos) => ipcRenderer.send('validateEmail', datos)
+        validateEmail: (datos) => ipcRenderer.send('validateEmail', datos), 
+        checkEmail: (callback) => ipcRenderer.on('checkEmail', callback)
     }
 );

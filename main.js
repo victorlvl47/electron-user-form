@@ -43,8 +43,10 @@ ipcMain.on('registroValido', function(event, args) {
 });
 
 ipcMain.on("validateEmail", function(event, args) {
+
+    console.log(args);
     
-    if (validator.isEmail('foo@bar.com')) {
+    if (validator.isEmail(args)) {
         console.log("good email");
     } else {
         console.log("bad email");
