@@ -34,22 +34,12 @@ function createWindow2() {
 }
 
 ipcMain.on('registroValido', function(event, args) {
-    console.log(args);
+    var user = args[0];
     createWindow2();
     ventana2.webContents.on('did-finish-load', function() {
-        ventana2.webContents.send('inicioCorrecto', 'Bienvenido');
+        ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + user);
     });
     // ventana.webContents.send('inicioCorrecto', 'Bienvenido');
 });
 
-ipcMain.on("validateEmail", function(event, args) {
-
-    console.log(args);
-    
-    if (validator.isEmail(args)) {
-        ventana.webContents.send("validEmail", args);
-    } else {
-        console.log("bad email");
-    }
-});
 app.whenReady().then(createWindow);
