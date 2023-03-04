@@ -35,11 +35,15 @@ function createWindow2() {
 
 ipcMain.on('registroValido', function(event, args) {
     var user = args[0];
-    createWindow2();
-    ventana2.webContents.on('did-finish-load', function() {
+    var password = args[1];
+    var email = args[2];
+
+    if (validator.isEmail(email)) {
+        createWindow2();
+        ventana2.webContents.on('did-finish-load', function() {
         ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + user);
     });
-    // ventana.webContents.send('inicioCorrecto', 'Bienvenido');
+    }
 });
 
 app.whenReady().then(createWindow);
