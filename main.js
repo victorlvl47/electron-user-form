@@ -47,10 +47,9 @@ ipcMain.on("validateEmail", function(event, args) {
     console.log(args);
     
     if (validator.isEmail(args)) {
-        console.log("good email");
+        ventana.webContents.send("validEmail", args);
     } else {
         console.log("bad email");
     }
 });
-
 app.whenReady().then(createWindow);

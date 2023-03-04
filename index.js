@@ -8,8 +8,8 @@ var expMin = RegExp("[a-z]");
 var expNum = RegExp("[0-9]");
 var expPass = RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}")
 
-window.comunicacion.checkEmail(function(event, args) {
-    alert("checkEmail function: " + args);
+window.comunicacion.validEmail(function(event, args) {
+    alert("your email: "+ args + " is a vaid email");
 });
 
 formulario.addEventListener('submit', function(event) {
