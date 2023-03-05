@@ -20,7 +20,7 @@ input[type="submit"] {
     display: block;
 }
 
-input[type="email"].error {
+input[type="email"].error, input[type="text"].error {
     border: 2px solid red;
 }
 
