@@ -37,11 +37,17 @@ ipcMain.on('registroValido', function(event, args) {
     var user = args[0];
     var password = args[1];
     var email = args[2];
+    var today = new Date();
+    var dob = validator.isDate(args[3]) ? new Date(args[3]) : today;
+    var isValidDate = validator.isBefore(dob.toISOString(), today.toISOString());
     var isValidEmail = validator.isEmail(email);
     var isValidUsername = user.length > 6;
     var isValidPassword = password.length > 8
 
-    if (isValidEmail && isValidUsername && isValidPassword) {
+    console.log("Date of birth:", dob);
+    console.log("today date:", today.toISOString());
+
+    if (isValidEmail && isValidUsername && isValidPassword && isValidDate) {
         createWindow2();
         ventana2.webContents.on('did-finish-load', function() {
             ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + user);
@@ -58,6 +64,10 @@ ipcMain.on('registroValido', function(event, args) {
 
     if (!isValidPassword) {
         ventana.webContents.send("invalidPass", " ");
+    }
+
+    if (!isValidDate) {
+        ventana.webContents.send("invalidDOB", " ");
     }
 });
 
