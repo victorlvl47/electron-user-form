@@ -11,7 +11,7 @@ label {
     clear: both;
 }
 
-input[type="text"], input[type="password"], input[type="date"] {
+input[type="text"], input[type="password"], input[type="date"], input[type="email"] {
     float: right;
 }
 

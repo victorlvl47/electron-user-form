@@ -37,8 +37,9 @@ ipcMain.on('registroValido', function(event, args) {
     var user = args[0];
     var password = args[1];
     var email = args[2];
+    var isValidEmail = validator.isEmail(email);
 
-    if (validator.isEmail(email)) {
+    if (isValidEmail) {
         createWindow2();
         ventana2.webContents.on('did-finish-load', function() {
         ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + user);
