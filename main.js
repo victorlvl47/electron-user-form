@@ -2,8 +2,22 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 const validator = require('validator');
 
-let ventana;
+// usuarios “ya utilizados”, estos usuarios no estarán disponibles para el registro.
+const reservedUsers = [
+    'johndoe',
+    'janedoe',
+    'alexsmith',
+    'sarahconnor',
+    'brucewayne',
+    'tonystark',
+    'peterparker',
+    'clarkkent',
+    'dianaprince',
+    'wadewilson', 
+    'abc'
+];
 
+let ventana;
 // Create window
 function createWindow() {
     ventana = new BrowserWindow({
@@ -41,13 +55,14 @@ ipcMain.on('registroValido', function(event, args) {
     var dob = validator.isDate(args[3]) ? new Date(args[3]) : today;
     var isValidDate = validator.isBefore(dob.toISOString(), today.toISOString());
     var isValidEmail = validator.isEmail(email);
-    var isValidUsername = user.length > 6;
+    var isValidUsername = user.length > 5;
+    var isUniqueUser = !(reservedUsers.includes(user));
     var isValidPassword = password.length > 8
 
     console.log("Date of birth:", dob);
     console.log("today date:", today.toISOString());
 
-    if (isValidEmail && isValidUsername && isValidPassword && isValidDate) {
+    if (isValidEmail && isValidUsername && isUniqueUser && isValidPassword && isValidDate) {
         createWindow2();
         ventana2.webContents.on('did-finish-load', function() {
             ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + user);
@@ -59,7 +74,7 @@ ipcMain.on('registroValido', function(event, args) {
     }
 
     if (!isValidUsername) {
-        ventana.webContents.send("invalidUsername", " ");
+        ventana.webContents.send("invalidUsername", " ");   
     }
 
     if (!isValidPassword) {
@@ -68,6 +83,10 @@ ipcMain.on('registroValido', function(event, args) {
 
     if (!isValidDate) {
         ventana.webContents.send("invalidDOB", " ");
+    }
+
+    if (!isUniqueUser) {
+        ventana.webContents.send("notUniqueUser", " ");
     }
 });
 

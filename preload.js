@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld(
         invalidEmail: (callback) => ipcRenderer.on('invalidEmail', callback), 
         invalidUsername: (callback) => ipcRenderer.on('invalidUsername', callback), 
         invalidPass: (callback) => ipcRenderer.on("invalidPass", callback), 
-        invalidDOB: (callback) => ipcRenderer.on("invalidDOB", callback)
+        invalidDOB: (callback) => ipcRenderer.on("invalidDOB", callback), 
+        notUniqueUser: (callback) => ipcRenderer.on("notUniqueUser", callback)
     }
 );

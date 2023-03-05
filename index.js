@@ -16,7 +16,7 @@ window.comunicacion.invalidEmail(function(event, args) {
 
 window.comunicacion.invalidUsername(function(event, args) {
     user.classList.add('error');
-    nombreError.textContent = "El nombre de usuario tiene que ser mayor a 6 caracteres";
+    nombreError.textContent = "El nombre de usuario tiene que ser mayor a 5 caracteres";
 });
 
 window.comunicacion.invalidPass(function(event, args) {
@@ -27,6 +27,11 @@ window.comunicacion.invalidPass(function(event, args) {
 window.comunicacion.invalidDOB(function(event, args) {
     dobInput.classList.add('error');
     dobError.textContent = "La fecha de nacimiento tiene que ser una fecha en el pasado";
+});
+
+window.comunicacion.notUniqueUser(function(event, args) {
+    user.classList.add('error');
+    nombreError.textContent = "Ese nombre de usuario no esta disponible, escribe otro nombre.";
 });
 
 
