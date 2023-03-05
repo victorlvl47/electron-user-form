@@ -19,3 +19,15 @@ input[type="submit"] {
     clear: both;
     display: block;
 }
+
+input[type="email"].error {
+    border: 2px solid red;
+}
+
+.error-message {
+    float: right;
+    clear: both;
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+}

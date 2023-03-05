@@ -42,8 +42,11 @@ ipcMain.on('registroValido', function(event, args) {
     if (isValidEmail) {
         createWindow2();
         ventana2.webContents.on('did-finish-load', function() {
-        ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + user);
-    });
+            ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + user);
+        });
+    }
+    else {
+        ventana.webContents.send("invalidEmail", " ");
     }
 });
 
