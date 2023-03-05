@@ -4,6 +4,7 @@ var pass = document.getElementById('pass-login');
 var emailInput = document.getElementById('email-login');
 var emailError = document.getElementById('email-error');
 var nombreError = document.getElementById('nombre-error');
+var passError = document.getElementById('pass-error');
 
 
 window.comunicacion.invalidEmail(function(event, args) {
@@ -16,6 +17,12 @@ window.comunicacion.invalidUsername(function(event, args) {
     nombreError.textContent = "El nombre de usuario tiene que ser mayor a 6 caracteres";
 });
 
+window.comunicacion.invalidPass(function(event, args) {
+    pass.classList.add('error');
+    passError.textContent = "La contrasena tiene que ser mayor a 8 caracteres";
+});
+
+
 
 
 formulario.addEventListener('submit', function(event) {
@@ -27,6 +34,8 @@ formulario.addEventListener('submit', function(event) {
     emailError.textContent = '';
     user.classList.remove('error');
     nombreError.textContent = '';
+    pass.classList.remove('error');
+    passError.textContent = '';
 
     window.comunicacion.registroValido([user.value, pass.value, emailInput.value])
 });

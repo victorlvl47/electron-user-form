@@ -39,8 +39,9 @@ ipcMain.on('registroValido', function(event, args) {
     var email = args[2];
     var isValidEmail = validator.isEmail(email);
     var isValidUsername = user.length > 6;
+    var isValidPassword = password.length > 8
 
-    if (isValidEmail && isValidUsername) {
+    if (isValidEmail && isValidUsername && isValidPassword) {
         createWindow2();
         ventana2.webContents.on('did-finish-load', function() {
             ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + user);
@@ -53,6 +54,10 @@ ipcMain.on('registroValido', function(event, args) {
 
     if (!isValidUsername) {
         ventana.webContents.send("invalidUsername", " ");
+    }
+
+    if (!isValidPassword) {
+        ventana.webContents.send("invalidPass", " ");
     }
 });
 
